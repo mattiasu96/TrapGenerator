@@ -1,2 +1,2 @@
-model_checkpoint_path: "r_word__128_512_unitsmodel_after_1.hdf"
-all_model_checkpoint_paths: "r_word__128_512_unitsmodel_after_1.hdf"
+model_checkpoint_path: "model_weights"
+all_model_checkpoint_paths: "model_weights"
