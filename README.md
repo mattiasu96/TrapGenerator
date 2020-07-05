@@ -7,6 +7,6 @@ What we have to do is to take the Basecode code and convert it into a working co
 
 **NB**: Don't run the jupyter notebooks Model Prediction and Model Training together! This will lead to an error caused by the simultaneous use of the GPU by the 2 codes. You have to first run the model training, and get your model_weights file (which contains the parameters of the model), then you close the kernel of the jupyter notebook and then you run the Model Training code. 
 
-**NB2** = Kick goes on C1, Snares goes on D1 and hi hat goes on F#1 
+**NB2** = Kick goes on C1(Note number 36), Snares goes on D1(Note numer 38)  and hi hat goes on F#1(note number 42). Careful about the note notation. Some sequencers/products refers to MIDI note 36 as C1, others as C0! To be sure about the actual note, use the MIDI number
 
 https://www.supreme-network.com/midis/browse/P/1667-post-malone/8542-rockstar Nice website to build a dataset, unfortunately, you must pay 
