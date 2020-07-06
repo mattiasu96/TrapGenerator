@@ -32,8 +32,8 @@ print(snare_files)
 print(hh_files)
 
 Nit = 1000
-
-for x in range(Nit):
+count = 0
+while ( count < Nit):
     # KICK
     maxLen = len(kick_files)
     i=randrange(0,maxLen)
@@ -51,6 +51,11 @@ for x in range(Nit):
         current_note = element.data[0]
         if current_note != c1:
             element.data[0] = c1
+    
+    totLen = ceil(k_flt.length/480)
+    if  totLen < 8: 
+      k_flt *=2
+
 
     # SNARE
     maxLen = len(snare_files)
@@ -69,6 +74,10 @@ for x in range(Nit):
         if current_note != d1:
             element.data[0] = d1
 
+    totLen = ceil(s_flt.length/480)
+    if  totLen < 8: 
+      s_flt *=2
+
     # HH
     maxLen = len(hh_files)
     i=randrange(0,maxLen)
@@ -86,10 +95,10 @@ for x in range(Nit):
         if current_note != fd1:
             element.data[0] = fd1
 
-    totLen = hh_flt.length/480
-    totLen = ceil(totLen)
-    if  totLen < 8: 
-      hh_flt *=2
+    totLen = ceil(hh_flt.length/480)
+   # if  totLen < 8: 
+    if round(16/totLen) > 1:
+      hh_flt *= round(16/totLen)
       
     # MERGE
     #ste = Events.SetTempoEvent(tick=0.0, data=[10, 197, 90])
@@ -118,14 +127,14 @@ for x in range(Nit):
     totLen = combined.length/480
     totLen = ceil(totLen)
     if  totLen == 32:  
+        count += 1
         #os.mkdir('DrumDB')
         midiname = "DrumDB\\" + randomString() + ".mid"
 
         # Save the pattern to disk
         FileIO.write_midifile(midiname, new_pattern)
         print(midiname + " scritto")
-    else:
-        x -= 1
+
 
 #bf = FileIO.read_midifile("bellofigo.mid") 
 #bf.resolution=480
