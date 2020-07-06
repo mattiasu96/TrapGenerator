@@ -31,13 +31,13 @@ print(kick_files)
 print(snare_files)
 print(hh_files)
 
-Nit = 1000
+Nit = 500
 count = 0
 while ( count < Nit):
     # KICK
     maxLen = len(kick_files)
     i=randrange(0,maxLen)
-    #print(kick_files[i])
+    
     k_midi = FileIO.read_midifile(kick_files[i]) #returns a Pattern with the MIDI file information (resolution ecc...), based on documentation https://github.com/jameswenzel/mydy/blob/master/src/FileIO.py
     k_midi.resolution=480
     #print(k_midi)
@@ -53,30 +53,33 @@ while ( count < Nit):
             element.data[0] = c1
     
     totLen = ceil(k_flt.length/480)
-    if  totLen < 8: 
-      k_flt *=2
+    if round(16/totLen) > 1:
+      k_flt *= round(16/totLen)
 
 
     # SNARE
     maxLen = len(snare_files)
     i=randrange(0,maxLen)
-    #print(snare_files[i])
+    #print(snare_files[i]) 
+            
     s_midi = FileIO.read_midifile(snare_files[i]) #returns a Pattern with the MIDI file information (resolution ecc...), based on documentation https://github.com/jameswenzel/mydy/blob/master/src/FileIO.py
     s_midi.resolution=480
 
-    s_track = s_midi[1] #selecting the track (since it's only one, it will be always at index 0)
+    s_track = s_midi[-1] #selecting the track (since it's only one, it will be always at index 0)
 
     s_flt=s_track.filter(lambda e: isinstance(e, (Events.NoteOnEvent, Events.NoteOffEvent)))# Selects only Note_On events, i'm discarding the note off
+    #divi = round(s_flt[0].tick/480)
 
     d1 = 38
     for element in s_flt :
         current_note = element.data[0]
+        #element.tick /= divi
         if current_note != d1:
             element.data[0] = d1
 
-    totLen = ceil(s_flt.length/480)
-    if  totLen < 8: 
-      s_flt *=2
+    totLen = s_flt.length/480
+    if round(16/totLen) > 1:
+      s_flt *= round(16/totLen)
 
     # HH
     maxLen = len(hh_files)
@@ -96,7 +99,6 @@ while ( count < Nit):
             element.data[0] = fd1
 
     totLen = ceil(hh_flt.length/480)
-   # if  totLen < 8: 
     if round(16/totLen) > 1:
       hh_flt *= round(16/totLen)
       
@@ -126,15 +128,17 @@ while ( count < Nit):
 
     totLen = combined.length/480
     totLen = ceil(totLen)
-    if  totLen == 32:  
+    if  True or totLen == 32:  
         count += 1
         #os.mkdir('DrumDB')
+        #midiname = "DrumDB\\" + randomString() + ".mid"
         midiname = "DrumDB\\" + randomString() + ".mid"
 
         # Save the pattern to disk
         FileIO.write_midifile(midiname, new_pattern)
         print(midiname + " scritto")
 
+print("Ho finito!")
 
 #bf = FileIO.read_midifile("bellofigo.mid") 
 #bf.resolution=480
