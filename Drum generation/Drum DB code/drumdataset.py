@@ -99,8 +99,10 @@ while ( count < Nit):
             element.data[0] = fd1
 
     totLen = ceil(hh_flt.length/480)
-    if round(16/totLen) > 1:
+    if totLen < 16:
       hh_flt *= round(16/totLen)
+    elif totLen > 32:
+       hh_flt.length = 32*480
       
     # MERGE
     #ste = Events.SetTempoEvent(tick=0.0, data=[10, 197, 90])
@@ -126,12 +128,11 @@ while ( count < Nit):
     new_pattern = Containers.Pattern( tracks=[new_track], resolution=480, fmt=1, relative=True)
     #print(new_pattern)
 
-    totLen = combined.length/480
+    totLen = (combined.length/480)*10
     totLen = ceil(totLen)
-    if  True or totLen == 32:  
+    if  totLen > 315 and totLen < 320:  
         count += 1
         #os.mkdir('DrumDB')
-        #midiname = "DrumDB\\" + randomString() + ".mid"
         midiname = "DrumDB\\" + randomString() + ".mid"
 
         # Save the pattern to disk
