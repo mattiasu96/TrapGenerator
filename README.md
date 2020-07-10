@@ -10,3 +10,6 @@ What we have to do is to take the Basecode code and convert it into a working co
 **NB2** = Kick goes on C1(Note number 36), Snares goes on D1(Note numer 38)  and hi hat goes on F#1(note number 42). Careful about the note notation. Some sequencers/products refers to MIDI note 36 as C1, others as C0! To be sure about the actual note, use the MIDI number
 
 https://www.supreme-network.com/midis/browse/P/1667-post-malone/8542-rockstar Nice website to build a dataset, unfortunately, you must pay 
+
+Useful resources: https://stackoverflow.com/questions/47125723/keras-lstm-for-text-generation-keeps-repeating-a-line-or-a-sequence 
+https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb
