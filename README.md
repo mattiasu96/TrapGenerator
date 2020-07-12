@@ -144,7 +144,7 @@ BAR 0b101000000 0b000000000 0b000000000 0b001000000 0b001000000 0b000000000 0b00
 
 Then we decided to plot the training behavior of our network on the Metallica dataset:
 
-![Model diagram](https://imgur.com/y2rq0RU)
+![Model diagram](https://i.imgur.com/y2rq0RU.png)
 
 
 
