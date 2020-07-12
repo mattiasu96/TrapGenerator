@@ -33,8 +33,19 @@ We need to convert our MIDI input data into a suited format for our Neural Netwo
 
 ![Model diagram](https://keunwoochoi.files.wordpress.com/2016/02/screen-shot-2016-02-23-at-10-52-12.png?w=1200)
 
+We're going to represent this scheme in a txt format using binary numbers. Here's an example:
 
+‘000000000’ : nothing played
+‘100000000’ : kick is played
+‘1000000001’ : kick and crash played
+‘0101000000’ : snare and open-HH played
 
+Each one of the above 9bit number represents the elements of my drumkit which have been played at that given moment. <br>
+We're quantizing our MIDI input with 16-th notes (you can easily change it inside the code, you can also set 32-th notes and try to experiment), so our converted MIDI file will look something like:
+
+0b010000000 0b010000000 0b000000000 0b010000000 0b010000000 0b000001000 0b000000000 0b000001000 0b010000000 0b010000000 0b000000000 0b010000000 0b010000000 0b000001000 0b000000000 0b000001000 BAR 0b010000000 0b010000000 0b000000000 0b010000000 0b010000000 0b000001000 0b000000000 0b000001000 0b010000000 0b000000000 0b000000000 0b000001000 0b000000000 0b000001000 0b000001000 0b000000000 BAR 
+
+As you might notice, we have a BAR element every 16 notes, which denotes the ending of a musical bar. 
 
 
 
