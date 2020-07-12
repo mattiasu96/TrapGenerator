@@ -1,5 +1,5 @@
 # TrapGenerator
-This project focuses on the automatic drum generation for trap music. **Our goal** is to create a model capable of creating drums loop for trap music.
+This project focuses on the automatic drum generation for trap music. Our goal is to create a model capable of creating drums loop for trap music.
 <br>The whole project is based on the following paper: https://arxiv.org/pdf/1604.05358v1.pdf
 
 
@@ -24,7 +24,9 @@ We decided to use this standard in order to exploit the majority of MIDI files y
 
 So, for example, you can download your files from here: https://www.supreme-network.com/midis/browse/P/1667-post-malone/8542-rockstar or here: http://en.midimelody.ru/lamb-of-god/ and just use them without any further processing.  
 
-
+We also wrote some code (...) which performs 2 important tasks:
+1. **Converts non standard MIDI files into standard MIDI.** This can be useful to generate data from loop packs. Usually you can find loops for Kick, Snare or Hi-Hats but they're usually given on a single note pattern which does not follow the drums MIDI standard. For example an Hi-Hat loop could be written on a D2 note. Our code automatically translate your file into a standardized one, all you have to do is to rename your file with the name of the element in it. If you have a Kick loop, just rename it like "Kick_01", if you have an Hi Hat loop, just rename it like "Hi_Hat_01" and so on. 
+2. 
 
 
 
