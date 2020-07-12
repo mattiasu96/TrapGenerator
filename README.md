@@ -169,22 +169,21 @@ The last 2 plots are particularly interesting since they give us a hint about th
 
 ## Poor dataset
 
-In the previous part we discussed how we tested our model and we were able to reproduce the presented in the scientific paper. <br>This shows us that our model is most likely correct and it is capable of learning patterns. 
+In the previous part we discussed how we tested our model and how we were able to reproduce the results presented in the scientific paper. <br>This shows us that our model is most likely correct and it is capable of learning patterns. 
 
-So why is it failing on our dataset?
+*So why is it failing on our dataset?*
 
-First thing first the metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences, which is only a third of the data! But this is not the only problem.
+First thing first the Metallica dataset has **23150 training sequences**, while our dataset has only about **8000 training sequences**, which is only a third of the original dataset! But this is not the only problem.
 
-As we mentioned in the Data input/generation section, our dataset has been built by combining a "pool" of Kick/Snar/Hi-Hats loops. This pool has been created using free samples pack and contains roughly 20 indipendent samples. 
-We generated 530 two bar long samples combining the above mentioned Kick/Snare/Hi-Hat loops together. 
+As we mentioned in the [Data Input/Generation](#Data-Input/Generation) section, our dataset has been built by combining a "pool" of Kick/Snare/Hi-Hats loops.<br> This pool has been created using free samples pack and contains roughly 20 indipendent samples. 
 
-This means that basically, given the low amount of original samples and the high amount of generated data, our dataset will surely contain multiple copies of the same identical loop! <br> This is clearly shown by the last 2 plot of the loss: the validation loss follows almost exactly the training loss because the validation set contains basically the same data of the training set!
+We generated **530 two bar long** samples combining the above mentioned Kick/Snare/Hi-Hat loops together. 
 
-Also another problem is that the Metallica dataset contains full real songs, which surely helps in the training phase, while our dataset contains only artificial loops (no real complete song).
+This means that, given the low amount of original samples and the high amount of generated data, our dataset will surely contain multiple copies of the same identical loop! <br> This is clearly shown in the last 2 plots of the training loss: the validation loss follows almost exactly the training error! <br> This happens because the validation dataset basically contains the same identical data of the training set.
 
-It is worth noting that the generation approach is pretty interesting and could open new interesting field in the research of RNN. <br> The basic idea is to emulate the Data Augmentation used in Image Classification, given a proper training set, could be a good idea to generate new artificial samples by combining piece of the original dataset together. This seems a possible good idea, especially in the case of drums (could be a bad idea in text generation, since you will likely generate total random sentences).
+Also another problem is that the Metallica dataset contains **full real songs**, which surely helps at training phase, while our dataset contains only artificial loops (no real complete song).
 
-The metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences.
+It is worth noting that the artificial samples approach is pretty interesting and could open new interesting field in the research of RNN. <br> The basic idea is to emulate the **Data Augmentation** used in **Image Classification**: given a proper training set, could be a good idea to generate new artificial samples by combining piece of the original dataset together.<br> This seems to be a possible good approach, especially in the case of drums (could be a bad idea in text generation, since you will likely generate total random sentences).
 
 # Conclusions
 Unfortunately we were not able to create a proper working application due to the lack of free data and free resources. MIDI for trap songs can be found on the internet, but unfortunately there are no free legal resources. 
