@@ -51,9 +51,25 @@ In the specific case of Trap Music, we suggest a 32-th note resolution in order 
 We sticked to 16-th notes to simplify the process. 
 
 ## Model training
+For our task we selected a standard LSTM Neural Network. Our network is based on the well known model for text prediction, you can find an example here: https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb
 
+In particular we used the following "base" networks:
+1. Network 1:
 
+model = Sequential()
+model.add(LSTM(512, return_sequences=True, input_shape=(maxlen, num_chars)))
+model.add(Dropout(0.2))
+model.add(LSTM(512, return_sequences=True))
+model.add(Dropout(0.2))
+model.add(LSTM(512, return_sequences=False))
+model.add(Dropout(0.2))
+model.add(Dense(num_chars))
+model.add(Activation('softmax'))
+ 
+model.compile(loss='categorical_crossentropy', optimizer='adam')
 
+And then we tested and tuned different values for the parameters (such as layer size, number of layers ecc...). <br> maxlen is the length of the input, we noticed that the best values for maxlen are 256, 512, 1024. <br>
+You have to tune this parameter according to your input encoding. For example a maxlen value of 256 with 16-th notes resolution, will correspond to an input size of 16 musical bar, while in the case of 32-th notes will correspond to 8 bars. 
 
 
 
