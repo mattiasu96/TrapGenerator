@@ -10,6 +10,10 @@ The project can be modeled by the following diagram:
 ![Model diagram](https://i.imgur.com/BtYp4Sr.png)
 
 
+We used the following libraries: 
+1. MIDI processing: https://github.com/jameswenzel/mydy
+2. Neural network model: https://www.tensorflow.org/
+
 
 
 
