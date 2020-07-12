@@ -25,10 +25,13 @@ We decided to use this standard in order to exploit the majority of MIDI files y
 So, for example, you can download your files from here: https://www.supreme-network.com/midis/browse/P/1667-post-malone/8542-rockstar or here: http://en.midimelody.ru/lamb-of-god/ and just use them without any further processing.  
 
 We also wrote some code (...) which performs 2 important tasks:
-1. **Converts non standard MIDI files into standard MIDI.** <br>This can be useful to generate data from loop packs. Usually you can find loops for Kick, Snare or Hi-Hats but they're usually given on a single note pattern which does not follow the drums MIDI standard. <br> For example an Hi-Hat loop could be written on a D2 note. <br>Our code automatically translates your file into a standardized one, all you have to do is to rename your file with the name of the element in it. If you have a Kick loop, just rename it like "Kick_01", if you have an Hi Hat loop, just rename it like "Hi_Hat_01" and so on. 
+1. **Converts non standard MIDI files into standard MIDI.** <br>This can be useful to generate data from loop packs. Usually, you can find loops for Kick, Snare or Hi-Hats but they're usually given on a single note pattern that not follow the drums MIDI standard.<br> For example, a Hi-Hat loop could be written on a D2 note. <br>Our code automatically translates your file into a standardized one, all you have to do is to rename your file with the name of the element in it. If you have a Kick loop, just rename it like "Kick_01", if you have a Hi-Hat loop, just rename it like "Hi_Hat_01" and so on.  
 2. **Generates artificial loops**. <br>The code combines Kick,Snare and Hi-Hats loops in order to generate new artificial drums loops, creating by randomly combining patterns of Kick+Snare+Hi-Hats. This approach has been inspired by the typical Data Augmentation process used in Image Classification, we will discuss this process in the Results part. 
 
+## Data Pre-Processing
+We need to convert our MIDI input data into a suited format for our Neural Network. First thing first, we will convert our MIDI file into a txt file. Then we're going to encode all the notes with the following scheme:
 
+![Model diagram](https://keunwoochoi.files.wordpress.com/2016/02/screen-shot-2016-02-23-at-10-52-12.png?w=1200)
 
 
 
