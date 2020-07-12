@@ -130,7 +130,7 @@ Knowing this, we started investigating the cause of the problem.
 
 We first started by testing and tuning the network parameters.<br> We changed the number of layers, neurons per layer, sequence length, epochs ecc... but our model never learnt something meaningful. We had the best results with ```max_len = 256```, *2 layers* and *1024 neuron per layer*.
 
-Our model outputs ```BAR``` every 7-8 notes (with some exceptions), which shows some kind of learnt pattern on ```BAR```.<br> All the other models failed at capturing this behavior: they never predicted any BAR or they placed ```BAR``` totally random. Here's an example of the output:
+Our model outputs ```BAR``` every 7-8 notes (with some exceptions), which shows some kind of learnt pattern on ```BAR```.<br> All the other models failed at capturing this behavior: they never predicted any BAR or they output ```BAR``` totally random.<br> Here's an example of the output:
 
 ```
 BAR 0b101000000 0b000000000 0b000000000 0b101000000 0b001000000 0b000000000 0b000000000 
@@ -144,29 +144,34 @@ BAR 0b101000000 0b000000000 0b000000000 0b001000000 0b001000000 0b001000000 0b00
 BAR 0b101000000 0b000000000 0b000000000 0b001000000 0b001000000 0b000000000 0b000000000 
 ```
 
-Then we decided to plot the training behavior of our network on the Metallica dataset:
+Then we continued our study of the network by plotting the training/validation loss of our network on the **Metallica dataset:**
 
 ![Model diagram](https://i.imgur.com/y2rq0RU.png)
 
 
-Which shows the typical behavior of a network that, at a certain point, starts overfitting. 
-So we decided to check the training behavior of the model on our dataset, since the really poor performances, we supposed that our model could be overfitting or underfitting the data.
-This is a couple of results we got with different models (changing some hyperparameters):
+Which shows the typical behavior of a network: at a certain point starts overfitting. <br>
+So we decided to check the training behavior of the model on our dataset. Since we had really poor performances, we supposed that our model could be overfitting or underfitting the data.
+
+These are some plots of the training we got with different models (changing some hyperparameters):
 
 ![Model diagram](https://i.imgur.com/fOAzcG7.png)
 ![Model diagram](https://i.imgur.com/effP0e4.png)
 ![Model diagram](https://i.imgur.com/HSPgeeS.png)
 ![Model diagram](https://i.imgur.com/vEkLP3X.png)
 
-Looking at the previous charts seems that our model is perfect! 
-1. No underfitting -> Training loss converges to 0
-2. No overfitting -> Validation error constantly follows the Training error
+Looking at the previous charts seems that our model is perfect! <br> 
+1. **No underfitting** -> Training loss converges to 0
+2. **No overfitting** -> Validation error constantly follows the Training error
 
-But the previous graphs are misleading. The last 2 plots are particularly interesting since give us a hint about the real problem, we will discuss it in the following section.
+**The previous plots are misleading!** 
+
+The last 2 plots are particularly interesting since they give us a hint about the real problem, we will discuss it in the following section.
 
 ## Poor dataset
 
-In the previous part we discussed how we tested our model and we were able to reproduce the behavior of the scientific paper. This shows us that our model is correct (in general) and is capable of learning patterns. So why is it failing in our case?
+In the previous part we discussed how we tested our model and we were able to reproduce the presented in the scientific paper. <br>This shows us that our model is most likely correct and it is capable of learning patterns. 
+
+So why is it failing on our dataset?
 
 First thing first the metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences, which is only a third of the data! But this is not the only problem.
 
