@@ -26,35 +26,34 @@ So, for example, you can download your files from here: https://www.supreme-netw
 
 We also wrote some code (...) which performs 2 important tasks:
 1. **Converts non standard MIDI files into standard MIDI.** <br>This can be useful to generate data from loop packs. Usually, you can find loops for Kick, Snare or Hi-Hats but they're usually given on a single note pattern that not follow the drums MIDI standard.<br> For example, a Hi-Hat loop could be written on a D2 note. <br>Our code automatically translates your file into a standardized one, all you have to do is to rename your file with the name of the element in it. If you have a Kick loop, just rename it like "Kick_01", if you have a Hi-Hat loop, just rename it like "Hi_Hat_01" and so on.  
-2. **Generates artificial loops**. <br>The code combines Kick,Snare and Hi-Hats loops in order to generate new artificial drums loops, creating by randomly combining patterns of Kick+Snare+Hi-Hats. This approach has been inspired by the typical Data Augmentation process used in Image Classification, we will discuss this process in the Results part. 
+2. **Generates artificial loops**. <br>The code combines Kick, Snare and Hi-Hats loops in order to generate new artificial drums loops, created by randomly combining patterns of Kick+Snare+Hi-Hat. This approach has been inspired by the typical *Data Augmentation* process used in *Image Classification*, we will discuss this process in the [Results](#Results) part. 
 
 ## Data Pre-Processing
-We need to convert our MIDI input data into a suited format for our Neural Network. First thing first, we will convert our MIDI file into a txt file. Then we're going to encode all the notes with the following scheme:
+We need to convert our MIDI input data into a appropriate format for our Neural Network. <br> First thing first, we will convert our MIDI file into a *.txt* file. Then we're going to encode all the notes with the following scheme:
 
 ![Model diagram](https://keunwoochoi.files.wordpress.com/2016/02/screen-shot-2016-02-23-at-10-52-12.png?w=1200)
 
-We're going to represent this scheme in a txt format using binary numbers. Here's an example:
-
+We're going to represent this scheme in a *.txt* format using *binary numbers*. Here's an example:
+```
 ‘000000000’ : nothing played <br>
 ‘100000000’ : kick is played <br>
 ‘1000000001’ : kick and crash played <br>
 ‘0101000000’ : snare and open-HH played
-
-Each one of the above 9bit number represents the elements of my drumkit which have been played at that given moment. <br>
-We're quantizing our MIDI input with 16-th notes (you can easily change it inside the code, you can also set 32-th notes and try to experiment), so our converted MIDI file will look something like:
-
+```
+Each one of the above 9-bit numbers represents the elements of my drumkit which has been played at that given moment. <br>
+We're quantizing our MIDI input with *16-th notes* (you can easily change it inside the code, you can also set 32-th notes and try to experiment). <br>Our converted MIDI file will look something like:
+```
 0b010000000 0b010000000 0b000000000 0b010000000 0b010000000 0b000001000 0b000000000 0b000001000 0b010000000 0b010000000 0b000000000 0b010000000 0b010000000 0b000001000 0b000000000 0b000001000 BAR 0b010000000 0b010000000 0b000000000 0b010000000 0b010000000 0b000001000 0b000000000 0b000001000 0b010000000 0b000000000 0b000000000 0b000001000 0b000000000 0b000001000 0b000001000 0b000000000 BAR 
+```
+As you might notice, we have a **BAR** element every 16 notes, which denotes the end of a **music measure**. 
 
-As you might notice, we have a BAR element every 16 notes, which denotes the ending of a musical bar. 
-
-In the specific case of Trap Music, we suggest a 32-th note resolution in order to represent the Hi-Hat "high speed" repetitions. Notice that this will double up the dimension of the input txt with all the realated consequences (longer training time ecc...) <br>
-We sticked to 16-th notes to simplify the process. 
+In the specific case of Trap Music, we suggest a **32-th note resolution** in order to represent the Hi-Hat "high speed" repetitions. Notice that this will double up the dimension of the input txt with all the realated consequences (longer training time ecc...) <br>
+We stuck to *16-th notes* to simplify the process. 
 
 ## Model training
-For our task we selected a standard LSTM Neural Network. Our network is based on the well known model for text prediction, you can find an example here: https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb
+For our task we selected a standard **LSTM Neural Network**. <br>Our network is based on the well known model for *text prediction*, you can find an example here: https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb
 
-In particular we used the following "base" networks:
-1. Network 1:
+In particular we used the following "base" network:
 ```
 model = Sequential()
 model.add(LSTM(512, return_sequences=True, input_shape=(maxlen, num_chars)))
