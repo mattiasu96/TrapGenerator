@@ -86,8 +86,10 @@ def sample(preds, temperature=1.0):
     probas = np.random.multinomial(1, preds, 1)
     return np.argmax(probas)
 ```
-This function exploits the well known paradigma of exploration vs exploitation used in Reinforcement Learning. 
+This function exploits the well known paradigma of exploration vs exploitation used in Reinforcement Learning. <br>
+The main idea is to allow exploration at prediction time, instead of taking always the prediction that maximizes the output probability, we slightly randomize the output process in order to encourage exloration and new patterns. High values of temperature increases the probability of occasional events (so exploration), while low values of temperature discourage occasional events (exploitation). 
 
+## Model Post-Processing
 
 
 
