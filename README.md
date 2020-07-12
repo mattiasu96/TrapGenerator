@@ -90,6 +90,12 @@ This function exploits the well known paradigma of exploration vs exploitation u
 The main idea is to allow exploration at prediction time, instead of taking always the prediction that maximizes the output probability, we slightly randomize the output process in order to encourage exloration and new patterns. High values of temperature increases the probability of occasional events (so exploration), while low values of temperature discourage occasional events (exploitation). 
 
 ## Model Post-Processing
+Our model will generate a txt file as output, containing its prediction. Since we're interested in generating useful loops, we have to convert our txt file into a MIDI file.
+The process is the same of the Pre-Processing part, but in reverse order. 
+From txt in the already mentioned format, we will extract the corresponding MIDI notes and we will append them in a MIDI file. We're doin this using the above mentioned Python library. 
+
+
+# Results
 
 
 
