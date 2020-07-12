@@ -173,10 +173,16 @@ We generated 530 two bar long samples combining the above mentioned Kick/Snare/H
 
 This means that basically, given the low amount of original samples and the high amount of generated data, our dataset will surely contain multiple copies of the same identical loop! <br> This is clearly shown by the last 2 plot of the loss: the validation loss follows almost exactly the training loss because the validation set contains basically the same data of the training set!
 
+Also another problem is that the Metallica dataset contains full real songs, which surely helps in the training phase, while our dataset contains only artificial loops (no real complete song).
+
+It is worth noting that the generation approach is pretty interesting and could open new interesting field in the research of RNN. <br> The basic idea is to emulate the Data Augmentation used in Image Classification, given a proper training set, could be a good idea to generate new artificial samples by combining piece of the original dataset together. This seems a possible good idea, especially in the case of drums (could be a bad idea in text generation, since you will likely generate total random sentences).
 
 The metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences.
 
+# Conclusions
+Unfortunately we were not able to create a proper working application due to the lack of free data and free resources. MIDI for trap songs can be found on the internet, but unfortunately there are no free legal resources. 
 
+Given a proper amount of good data, our model will likely work with a bit of tuning. 
 
 
 
