@@ -54,7 +54,7 @@ We stuck to *16-th notes* to simplify the process.
 ## Model training
 For our task we selected a standard **LSTM Neural Network**. <br>Our network is based on the well known model for *text prediction*, you can find an example here: https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb
 
-In particular we used the following "base" network:
+In particular we used the following network:
 ```
 model = Sequential()
 model.add(LSTM(512, return_sequences=True, input_shape=(maxlen, num_chars)))
@@ -74,9 +74,9 @@ You have to tune this parameter according to your input encoding. For example a 
 For further considerations/explanations on our model and testing, go to the [Results](#Results) section. The model provided here is the "standard" one, the same used in the paper and in many text prediction tasks. 
 
 ## Model Prediction 
-Once the model has been trained, we can use it to generate new data.<br> As shown in the **txt LSTM** (https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb) we extract a random sequence from our training dataset and we use it as a starting point for our prediction. Our model will "continue" the sequence with its own generated data.
+Once the model has been trained, we can use it to generate new data.<br> As shown in the **txt LSTM** (https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb) we extract a random sequence from our training dataset and then we use it as a starting point for our prediction. <br>Our model will continue the sequence with its own generated data.
 
-A very important function is the following:
+A very important function is the following one:
 ```
 def sample(preds, temperature=1.0):
     preds = np.asarray(preds).astype('float64')
@@ -86,8 +86,8 @@ def sample(preds, temperature=1.0):
     probas = np.random.multinomial(1, preds, 1)
     return np.argmax(probas)
 ```
-This function exploits the well known paradigma of exploration vs exploitation used in Reinforcement Learning. <br>
-The main idea is to allow exploration at prediction time, instead of taking always the prediction that maximizes the output probability, we slightly randomize the output process in order to encourage exloration and new patterns. High values of temperature increases the probability of occasional events (so exploration), while low values of temperature discourage occasional events (exploitation). 
+This function exploits the well known paradigma of **exploration vs exploitation** used in **Reinforcement Learning**. The main idea is to allow exploration at prediction time.
+<br>Instead of always taking the prediction that maximizes the output probability, we slightly randomize the output process to encourage exploration and new patterns. <br>High values of ```temperature``` increase the probability of occasional events (so exploration), while low values of temperature discourage occasional events (exploitation). 
 
 ## Model Post-Processing
 Our model will generate a txt file as output, containing its prediction. Since we're interested in generating useful loops, we have to convert our txt file into a MIDI file.
