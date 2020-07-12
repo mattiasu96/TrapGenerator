@@ -69,10 +69,24 @@ model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 ```
 And then we tested and tuned different values for the parameters (such as layer size, number of layers ecc...). <br> maxlen is the length of the input, we noticed that the best values for maxlen are 256, 512, 1024. <br>
-You have to tune this parameter according to your input encoding. For example a maxlen value of 256 with 16-th notes resolution, will correspond to an input size of 16 musical bar, while in the case of 32-th notes will correspond to 8 bars. 
+You have to tune this parameter according to your input encoding. For example a maxlen value of 256 with 16-th notes resolution, corresponds to an input size of 16 musical bar, while in the case of 32-th notes corresponds to 8 bars. 
 
+For further consideration/explanation on our model and testing, go to the Results section. The model provided here is the "standard" one, the one proposed in the paper (and in many other text prediction tasks)
 
+## Model Prediction 
+Once we have trained our model, we can use it to generate new data. As shown in the txt LSTM (https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb) we extract a random sequence from our training dataset and we use it as a starting point for our prediction. Our model will "continue" the sequence with its own generated data.
 
+A very important function is the following:
+```
+def sample(preds, temperature=1.0):
+    preds = np.asarray(preds).astype('float64')
+    preds = np.log(preds) / temperature
+    exp_preds = np.exp(preds)
+    preds = exp_preds / np.sum(exp_preds)
+    probas = np.random.multinomial(1, preds, 1)
+    return np.argmax(probas)
+```
+This function exploits the well known paradigma of exploration vs exploitation used in Reinforcement Learning. 
 
 
 
