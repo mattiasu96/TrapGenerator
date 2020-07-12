@@ -25,8 +25,8 @@ We decided to use this standard in order to exploit the majority of MIDI files y
 So, for example, you can download your files from here: https://www.supreme-network.com/midis/browse/P/1667-post-malone/8542-rockstar or here: http://en.midimelody.ru/lamb-of-god/ and just use them without any further processing.  
 
 We also wrote some code (...) which performs 2 important tasks:
-1. **Converts non standard MIDI files into standard MIDI.** <br>This can be useful to generate data from loop packs. Usually, you can find loops for Kick, Snare or Hi-Hats but they're usually given on a single note pattern that not follow the drums MIDI standard.<br> For example, a Hi-Hat loop could be written on a D2 note. <br>Our code automatically translates your file into a standardized one, all you have to do is to rename your file with the name of the element in it. If you have a Kick loop, just rename it like "Kick_01", if you have a Hi-Hat loop, just rename it like "Hi_Hat_01" and so on.  
-2. **Generates artificial loops**. <br>The code combines Kick, Snare and Hi-Hats loops in order to generate new artificial drums loops, created by randomly combining patterns of Kick+Snare+Hi-Hat. This approach has been inspired by the typical *Data Augmentation* process used in *Image Classification*, we will discuss this process in the [Results](#Results) part. 
+1. **Converts non standard MIDI files into standard MIDI.** <br>This can be useful to generate data from loop packs. Usually, you can find loops for Kick, Snare or Hi-Hats but they're usually given on a single note pattern that not follow the drums MIDI standard.<br> For example, a Hi-Hat loop could be written on a D2 note. <br>Our code automatically translates your file into a standardized one, all you have to do is to rename your file with the name of the element in it. If you have a Kick loop, just rename it like *"Kick_01"*, if you have a Hi-Hat loop, just rename it like *"Hi_Hat_01"* and so on.  
+2. **Generates artificial loops**. <br>The code combines Kick, Snare and Hi-Hats loops in order to generate new artificial drums loops, created by randomly combining patterns of Kick+Snare+Hi-Hat. This approach has been inspired by the typical **Data Augmentation** process used in **Image Classification**, we will discuss this process in the [Results](#Results) part. 
 
 ## Data Pre-Processing
 We need to convert our MIDI input data into a appropriate format for our Neural Network. <br> First thing first, we will convert our MIDI file into a *.txt* file. Then we're going to encode all the notes with the following scheme:
@@ -67,13 +67,13 @@ model.add(Activation('softmax'))
  
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 ```
-And then we tested and tuned different values for the parameters (such as layer size, number of layers ecc...). <br> maxlen is the length of the input, we noticed that the best values for maxlen are 256, 512, 1024. <br>
-You have to tune this parameter according to your input encoding. For example a maxlen value of 256 with 16-th notes resolution, corresponds to an input size of 16 musical bar, while in the case of 32-th notes corresponds to 8 bars. 
+Then we tested and tuned different values for the parameters (such as *layer size*, *number of layers* ecc...). <br> ```maxlen``` is the length of the input, we noticed that the best values for ```maxlen``` are **256, 512, 1024**. <br>
+You have to tune this parameter according to your input encoding. For example a ```maxlen``` value of **256** with *16-th notes* resolution, corresponds to an input size of **16 musical measures**, while in the case of *32-th notes* corresponds to **8 measures**. 
 
-For further consideration/explanation on our model and testing, go to the Results section. The model provided here is the "standard" one, the one proposed in the paper (and in many other text prediction tasks)
+For further considerations/explanations on our model and testing, go to the [Results](#Results) section. The model provided here is the "standard" one, the same used in the paper and in many text prediction tasks. 
 
 ## Model Prediction 
-Once we have trained our model, we can use it to generate new data. As shown in the txt LSTM (https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb) we extract a random sequence from our training dataset and we use it as a starting point for our prediction. Our model will "continue" the sequence with its own generated data.
+Once the model has been trained, we can use it to generate new data.<br> As shown in the **txt LSTM** (https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/8.1-text-generation-with-lstm.ipynb) we extract a random sequence from our training dataset and we use it as a starting point for our prediction. Our model will "continue" the sequence with its own generated data.
 
 A very important function is the following:
 ```
