@@ -154,8 +154,17 @@ This is a couple of results we got with different models (changing some hyperpar
 ![Model diagram](https://i.imgur.com/fOAzcG7.png)
 ![Model diagram](https://i.imgur.com/effP0e4.png)
 ![Model diagram](https://i.imgur.com/HSPgeeS.png)
-![Model diagram](https://i.imgur.com/effP0e4.png)
+![Model diagram](https://i.imgur.com/vEkLP3X.png)
 
+Looking at the previous charts seems that our model is perfect! 
+1. No underfitting -> Training loss converges to 0
+2. No overfitting -> Validation error constantly follows the Training error
+
+But the previous graphs are misleading. The last 2 plots are particularly interesting since give us a hint about the real problem, we will discuss it in the following section.
+
+## Poor dataset
+
+In the previous part we discussed how we tested our model and we were able to reproduce the behavior of the scientific paper. This shows us that our model is correct (in general) and is capable of learning patterns. So why is it failing in our case?
 
 
 The metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences.
