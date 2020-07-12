@@ -94,14 +94,14 @@ Our model will generate a *.txt file* as output, containing its prediction. Sinc
 The process is the same as the [Pre-Processing](#Data-Pre-Processing) part but in reverse order. <br> So we will extract MIDI notes from their *.txt* representation. 
 
 # Results
-Did we end up with a good drums generator? Unfortunately, not at all.  <br>We're going to make a deeper analysis on why we failed and how to solve the problem.
+Did we end up with a good drums generator? Unfortunately, not at all.  <br>We're going to make a deeper analysis of why we failed and how to solve the problem. <br>
 Here's an example of our prediction: Link here.
 
 ## Emulating the original paper results
 We were able to correctly emulate the results provided in the paper + blog post. <br>
-The data pre-processing and post-processing functions work perfectly, they have been tested multiple times (converting from MIDI to txt and then from txt to MIDI we obtained again the original file) and show coherent results.
+Data pre-processing and post-processing functions work perfectly, they have been tested multiple times and show coherent results.
 
-Then we trained our model over the Metallica dataset for 60 epochs, and we obtained coherent results. In fact, as shown in the blog-post related with the paper, after 60 epochs of training the model has learnt the 16 notes bar structure, we were able to obtain the same result. <br> Here's an example of our predicted output in this case: 
+Then we trained our model over the **Metallica dataset** for **60 epochs**, and we obtained coherent results. After 60 epochs of training our model has learnt the *16 notes bar structure*, we were able to obtain the same result of the paper. <br> Here's an example of our predicted output in this case: 
 ```
 BAR 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 
 BAR 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 
@@ -114,19 +114,23 @@ BAR 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b00
 BAR 0b000000000 0b000000000 0b000000000 0b000000000 0b100000001 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 
 BAR 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 
 ```
-Here's the output provided by the paper author:
+Here's the output provided by the author of the paper:
 ![Model diagram](https://keunwoochoi.files.wordpress.com/2016/02/screen-shot-2016-02-23-at-11-28-06.png?w=1200)
 
-As you might notice, both networks have learnt the 16 note bar pattern! Notice that, our network, has a quite sparse prediction (predicts mostly 0b000000000) because in this case we used a simpler model than the one propose at the beginning in order to speed up the learning process. Our goal was to test and demonstrate that the network was capable of learning repeating patterns. 
+As you might notice, both networks have learnt the *16 note bar* pattern! 
+
+Our network has a quite sparse prediction (predicts mostly ```0b000000000```) because in this case, we used a simpler model than the one proposed (faster to train). The goal was to test and demonstrate that the network was capable of learning repeating patterns.
 
 ## Addressing the problem
 
-The previous results gives us some certainties: we know that our model is capable of learning patterns, behaves coherently with the input data and we do not have strange bugs.
-Unfortunately our prediction on our trap dataset is still pretty poor.
+The previous results give us some certainties: we know that our model is capable of learning patterns, behaves coherently with the input data and we do not have strange bugs.
+Unfortunately, our prediction on our trap dataset is still pretty poor.
+
 Knowing this, we started investigating the cause of the problem. 
 
-We first started by testing and tuning the network parameters. We changed the number of layers, neurons per layer, sequence length, epochs ecc... but our model never learnt something meaningful.
-We had the best results with max_len = 256, 2 layers and 1024 neuron per layer. In our output we can notice that our model outputs BAR every 7-8, which shows some kind of relationship with our input data (16 notes per BAR). Other models failed at capturing this behavior, they never placed any BAR and/or placed multiple of them sequentially or totally random. Here's an example of the output:
+We first started by testing and tuning the network parameters.<br> We changed the number of layers, neurons per layer, sequence length, epochs ecc... but our model never learnt something meaningful. We had the best results with ```max_len = 256```, *2 layers* and *1024 neuron per layer*.
+
+Our model outputs ```BAR``` every 7-8 notes (with some exceptions), which shows some kind of learnt pattern on ```BAR```.<br> All the other models failed at capturing this behavior: they never predicted any BAR or they placed ```BAR``` totally random. Here's an example of the output:
 
 ```
 BAR 0b101000000 0b000000000 0b000000000 0b101000000 0b001000000 0b000000000 0b000000000 
