@@ -11,8 +11,8 @@ The project can be modeled by the following diagram:
 
 
 We used the following libraries: 
-1. MIDI processing: https://github.com/jameswenzel/mydy
-2. Neural network model: https://www.tensorflow.org/
+1. **MIDI processing**: https://github.com/jameswenzel/mydy
+2. **Neural network model**: https://www.tensorflow.org/
 
 
 
