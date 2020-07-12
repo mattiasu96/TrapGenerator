@@ -183,7 +183,9 @@ This means that, given the low amount of original samples and the high amount of
 
 Also another problem is that the Metallica dataset contains **full real songs**, which surely helps at training phase, while our dataset contains only artificial loops (no real complete song).
 
-It is worth noting that the artificial samples approach is pretty interesting and could open new interesting field in the research of RNN. <br> The basic idea is to emulate the **Data Augmentation** used in **Image Classification**: given a proper training set, could be a good idea to generate new artificial samples by combining piece of the original dataset together.<br> This seems to be a possible good approach, especially in the case of drums (could be a bad idea in text generation, since you will likely generate total random sentences).
+It is worth noting that the artificial samples approach is pretty interesting and could be a good technique to improve the performance of the neural network. <br> The basic idea is to emulate the **Data Augmentation** used in **Image Classification**: given a proper training set, could be a good idea to generate new artificial samples by combining piece of the original dataset together.<br> 
+
+This seems to be a possible good approach, especially in the case of drums (could be a bad idea in text generation, since you will likely generate not meaningful sentences).
 
 # Conclusions
 Unfortunately we were not able to create a proper working application due to the lack of free data and free resources. MIDI for trap songs can be found on the internet, but unfortunately there are no free legal resources. 
