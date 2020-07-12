@@ -147,6 +147,15 @@ Then we decided to plot the training behavior of our network on the Metallica da
 ![Model diagram](https://i.imgur.com/y2rq0RU.png)
 
 
+Which shows the typical behavior of a network that, at a certain point, starts overfitting. 
+So we decided to check the training behavior of the model on our dataset, since the really poor performances, we supposed that our model could be overfitting or underfitting the data.
+This is a couple of results we got with different models (changing some hyperparameters):
+
+![Model diagram](https://i.imgur.com/fOAzcG7.png)
+![Model diagram](https://i.imgur.com/effP0e4.png)
+![Model diagram](https://i.imgur.com/HSPgeeS.png)
+![Model diagram](https://i.imgur.com/effP0e4.png)
+
 
 
 The metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences.
