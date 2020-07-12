@@ -1,6 +1,6 @@
 # TrapGenerator
 This project focuses on the automatic drum generation for trap music.
-The whole project is based on the following paper: https://arxiv.org/pdf/1604.05358v1.pdf
+<br>The whole project is based on the following paper: https://arxiv.org/pdf/1604.05358v1.pdf
 
 
 ## Project overview
