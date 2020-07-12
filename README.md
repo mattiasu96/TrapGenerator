@@ -119,6 +119,36 @@ BAR 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b000000000 0b00
 Here's the output provided by the paper author:
 ![Model diagram](https://keunwoochoi.files.wordpress.com/2016/02/screen-shot-2016-02-23-at-11-28-06.png?w=1200)
 
+As you might notice, both networks have learnt the 16 note bar pattern! Notice that, our network, has a quite sparse prediction (predicts mostly 0b000000000) because in this case we used a simpler model than the one propose at the beginning in order to speed up the learning process. Our goal was to test and demonstrate that the network was capable of learning repeating patterns. 
+
+## Addressing the problem
+
+The previous results gives us some certainties: we know that our model is capable of learning patterns, behaves coherently with the input data and we do not have strange bugs.
+Unfortunately our prediction on our trap dataset is still pretty poor.
+Knowing this, we started investigating the cause of the problem. 
+
+We first started by testing and tuning the network parameters. We changed the number of layers, neurons per layer, sequence length, epochs ecc... but our model never learnt something meaningful.
+We had the best results with max_len = 256, 2 layers and 1024 neuron per layer. In our output we can notice that our model outputs BAR every 7-8, which shows some kind of relationship with our input data (16 notes per BAR). Other models failed at capturing this behavior, they never placed any BAR and/or placed multiple of them sequentially or totally random. Here's an example of the output:
+
+```
+BAR 0b101000000 0b000000000 0b000000000 0b101000000 0b001000000 0b000000000 0b000000000 
+BAR 0b101000000 0b000000000 0b000000000 0b000000000 0b001000000 0b001000000 0b000000000 0b000000000 
+BAR 0b101000000 0b000000000 0b000000000 0b101000000 0b001000000 0b001000000 0b000000000 0b000000000 0b101000000 0b000000000 0b000000000 0b000000000 0b001000000 0b001000000 0b000000000 0b000000000 0b101000000 0b000000000 0b000000000 0b000000000 0b001000000 0b001000000 0b001000000 0b001000000 0b101000000 0b000000000 0b000000000 0b000000000 0b001000000 0b001000000 0b000000000 0b000000000 
+BAR 0b101000000 0b000000000 0b000000000 0b101000000 0b001000000 0b001000000 0b001000000 
+BAR 0b101000000 0b000000000 0b000000000 0b000000000 0b001000000 0b001000000 0b000000000 0b000000000 
+BAR 0b101000000 0b000000000 0b000000000 0b101000000 0b001000000 0b000000000 0b000000000 
+BAR 0b101000000 0b000000000 0b000000000 0b000000000 0b001000000 0b001000000 0b000000000 0b000000000 
+BAR 0b101000000 0b000000000 0b000000000 0b001000000 0b001000000 0b001000000 0b001000000 
+BAR 0b101000000 0b000000000 0b000000000 0b001000000 0b001000000 0b000000000 0b000000000 
+```
+
+Then we decided to plot the training behavior of our network on the Metallica dataset:
+
+![Model diagram](https://imgur.com/y2rq0RU)
+
+
+
+
 The metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences.
 
 
