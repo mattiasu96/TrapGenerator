@@ -17,6 +17,7 @@ We used the following libraries:
 
 ## Data Input/Generation
 We use standard MIDI files as input data.<br> Input data must follow the standard MIDI drums representation: https://www.zendrum.com/resource-site/drumnotes.htm <br>
+
 So for example, the Kick should be placed on note 35/36 of the MIDI roll (which is mapped to a C0 or C1 note, depending on your DAW, we discovered that Ableton has a different representation of notes with respect to Reaper, for example).
 
 We decided to use this standard in order to exploit the majority of MIDI files you can find on the internet. <br> So for example you could download your files from here: https://www.supreme-network.com/midis/browse/P/1667-post-malone/8542-rockstar or here: http://en.midimelody.ru/lamb-of-god/ and just use them without any further processing.  
