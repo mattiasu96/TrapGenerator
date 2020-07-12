@@ -35,9 +35,9 @@ We need to convert our MIDI input data into a suited format for our Neural Netwo
 
 We're going to represent this scheme in a txt format using binary numbers. Here's an example:
 
-‘000000000’ : nothing played
-‘100000000’ : kick is played
-‘1000000001’ : kick and crash played
+‘000000000’ : nothing played <br>
+‘100000000’ : kick is played <br>
+‘1000000001’ : kick and crash played <br>
 ‘0101000000’ : snare and open-HH played
 
 Each one of the above 9bit number represents the elements of my drumkit which have been played at that given moment. <br>
