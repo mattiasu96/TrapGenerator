@@ -1,5 +1,15 @@
 # TrapGenerator
-Automatic Trap Music Generator 
+This project focuses on the automatic drum generation for trap music.
+The whole project is based on the following paper: https://arxiv.org/pdf/1604.05358v1.pdf
+
+
+## Project overview
+The whole project can be represented by the following diagram:
+
+
+
+
+
 
 In the Drum Generation folder you find the current code. The Basecode folder containts the basecode i'm using (developer by a researcher), that's the starting point. The jupyter file you find inside the Drum generation folder are some experiment of checking/converting MIDI files.
 
