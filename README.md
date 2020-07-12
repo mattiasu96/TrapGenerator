@@ -47,6 +47,12 @@ We're quantizing our MIDI input with 16-th notes (you can easily change it insid
 
 As you might notice, we have a BAR element every 16 notes, which denotes the ending of a musical bar. 
 
+In the specific case of Trap Music, we suggest a 32-th note resolution in order to represent the Hi-Hat "high speed" repetitions. Notice that this will double up the dimension of the input txt with all the realated consequences (longer training time ecc...) <br>
+We sticked to 16-th notes to simplify the process. 
+
+## Model training
+
+
 
 
 
