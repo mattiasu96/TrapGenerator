@@ -16,7 +16,7 @@ We used the following libraries:
 
 
 ## Data Input/Generation
-We use standard MIDI files as input data.<br> Input data must follow the standard MIDI drums representation: https://www.zendrum.com/resource-site/drumnotes.htm <br>
+We use standard MIDI files as input data.<br> **Input data must follow the standard MIDI drums representation:** https://www.zendrum.com/resource-site/drumnotes.htm <br>
 
 So for example, the Kick should be placed on note 35/36 of the MIDI roll (which is mapped to a C0 or C1 note, depending on your DAW, we discovered that Ableton has a different representation of notes with respect to Reaper, for example).
 
