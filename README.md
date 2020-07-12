@@ -96,6 +96,14 @@ From txt in the already mentioned format, we will extract the corresponding MIDI
 
 
 # Results
+Did we end up with a good drums generator? Unfortunately, not at all, but we're going to make a deeper analysis on why we failed and how to solve the problem.
+Here's an example of our prediction: Link here.
+
+## Emulating the original paper results
+We were able to correctly emulate the results provided in the paper + blog post. <br>
+The data pre-processing and post-processing functions work perfectly, they have been tested multiple times (converting from MIDI to txt and then from txt to MIDI we obtained again the original file) and show coherent results.
+
+Then we trained our model over the Metallica dataset for 60 epochs, and we obtained coherent results. In fact, as shown in the blog-post related with the paper 
 
 
 
