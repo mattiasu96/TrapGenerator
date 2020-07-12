@@ -5,6 +5,8 @@ This project focuses on the automatic drum generation for trap music.
 
 ## Project overview
 The project can be modeled by the following diagram:
+
+
 ![Model diagram](https://imgur.com/BtYp4Sr)
 
 
