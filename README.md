@@ -91,12 +91,10 @@ This function exploits the well known paradigma of **exploration vs exploitation
 
 ## Model Post-Processing
 Our model will generate a *.txt file* as output, containing its prediction. Since we're interested in generating useful loops, we have to convert our *.txt file* into a MIDI file.
-The process is the same as the [Pre-Processing](#Data-Pre-Processing) part but in reverse order. 
-From txt in the already mentioned format, we will extract the corresponding MIDI notes and we will append them in a MIDI file. We're doin this using the above mentioned Python library. 
-
+The process is the same as the [Pre-Processing](#Data-Pre-Processing) part but in reverse order. <br> So we will extract MIDI notes from their *.txt* representation. 
 
 # Results
-Did we end up with a good drums generator? Unfortunately, not at all, but we're going to make a deeper analysis on why we failed and how to solve the problem.
+Did we end up with a good drums generator? Unfortunately, not at all.  <br>We're going to make a deeper analysis on why we failed and how to solve the problem.
 Here's an example of our prediction: Link here.
 
 ## Emulating the original paper results
