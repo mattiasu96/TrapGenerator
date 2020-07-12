@@ -166,6 +166,13 @@ But the previous graphs are misleading. The last 2 plots are particularly intere
 
 In the previous part we discussed how we tested our model and we were able to reproduce the behavior of the scientific paper. This shows us that our model is correct (in general) and is capable of learning patterns. So why is it failing in our case?
 
+First thing first the metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences, which is only a third of the data! But this is not the only problem.
+
+As we mentioned in the Data input/generation section, our dataset has been built by combining a "pool" of Kick/Snar/Hi-Hats loops. This pool has been created using free samples pack and contains roughly 20 indipendent samples. 
+We generated 530 two bar long samples combining the above mentioned Kick/Snare/Hi-Hat loops together. 
+
+This means that basically, given the low amount of original samples and the high amount of generated data, our dataset will surely contain multiple copies of the same identical loop! <br> This is clearly shown by the last 2 plot of the loss: the validation loss follows almost exactly the training loss because the validation set contains basically the same data of the training set!
+
 
 The metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences.
 
