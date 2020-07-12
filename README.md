@@ -26,7 +26,51 @@ So, for example, you can download your files from here: https://www.supreme-netw
 
 We also wrote some code (...) which performs 2 important tasks:
 1. **Converts non standard MIDI files into standard MIDI.** <br>This can be useful to generate data from loop packs. Usually you can find loops for Kick, Snare or Hi-Hats but they're usually given on a single note pattern which does not follow the drums MIDI standard. <br> For example an Hi-Hat loop could be written on a D2 note. <br>Our code automatically translates your file into a standardized one, all you have to do is to rename your file with the name of the element in it. If you have a Kick loop, just rename it like "Kick_01", if you have an Hi Hat loop, just rename it like "Hi_Hat_01" and so on. 
-2. **Generates artificial loops**. <br>The code combines Kick,Snare and Hi-Hats loops in order to generate new artificial drums loops, creating by combining randomly patterns of Kick+Snare+Hi-Hats. This approach has been inspired by the typical Data Augmentation process used in Image Classification, we will discuss this process in the Results part. 
+2. **Generates artificial loops**. <br>The code combines Kick,Snare and Hi-Hats loops in order to generate new artificial drums loops, creating by randomly combining patterns of Kick+Snare+Hi-Hats. This approach has been inspired by the typical Data Augmentation process used in Image Classification, we will discuss this process in the Results part. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
