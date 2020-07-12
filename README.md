@@ -1,5 +1,5 @@
 # TrapGenerator
-This project focuses on the automatic drum generation for trap music.
+This project focuses on the automatic drum generation for trap music. **Our goal** is to create a model capable of creating drums loop for trap music.
 <br>The whole project is based on the following paper: https://arxiv.org/pdf/1604.05358v1.pdf
 
 
@@ -22,7 +22,7 @@ So for example, the Kick should be placed on note 35/36 of the MIDI roll (which 
 
 We decided to use this standard in order to exploit the majority of MIDI files you can find on the internet. 
 
-So for example you could download your files from here: https://www.supreme-network.com/midis/browse/P/1667-post-malone/8542-rockstar or here: http://en.midimelody.ru/lamb-of-god/ and just use them without any further processing.  
+So, for example, you can download your files from here: https://www.supreme-network.com/midis/browse/P/1667-post-malone/8542-rockstar or here: http://en.midimelody.ru/lamb-of-god/ and just use them without any further processing.  
 
 
 
