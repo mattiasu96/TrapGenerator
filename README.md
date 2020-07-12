@@ -103,7 +103,7 @@ Here's an example of our prediction: Link here.
 We were able to correctly emulate the results provided in the paper + blog post. <br>
 The data pre-processing and post-processing functions work perfectly, they have been tested multiple times (converting from MIDI to txt and then from txt to MIDI we obtained again the original file) and show coherent results.
 
-Then we trained our model over the Metallica dataset for 60 epochs, and we obtained coherent results. In fact, as shown in the blog-post related with the paper 
+Then we trained our model over the Metallica dataset for 60 epochs, and we obtained coherent results. In fact, as shown in the blog-post related with the paper. The metallica dataset has 23150 training sequences, while our dataset has only about 8000 training sequences.
 
 
 
