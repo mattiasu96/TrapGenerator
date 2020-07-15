@@ -28,10 +28,17 @@ We also wrote some code additional which helped us in the dataset built. It perf
 1. **It converts non standard MIDI files into standard MIDI.** <br>This can be useful to generate data from loop packs. Usually, you can find loops for Kick, Snare or Hi-Hats but they're usually given on a single note pattern that not follow the drums MIDI standard.<br> For example, a Hi-Hat loop could be written on a D2 note. <br>Our code automatically translates your file into a standardized one, all you have to do is to rename your file with the name of the element in it. If you have a Kick loop, just rename it like *"01_Kick"*, if you have a Hi-Hat loop, just rename it like *"01_Hi_Hat"* and so on.  
 2. **It generates artificial loops**. <br>The code combines Kick, Snare and Hi-Hats loops in order to generate new artificial drums loops, created by randomly combining patterns of Kick+Snare+Hi-Hat. This approach has been inspired by the typical **Data Augmentation** process used in **Image Classification**, we will discuss this process in the [Results](#Results) part. 
 
+## Our (poor) dataset
+We decided to reduce our dataset to a three-instrument set of loops. This made a lot easier buinding it from scratch. This model would also work with more complete datasets (up to 9 instruments to date). 
 In our dataset we put: 
 - the *kick* on note 36 (C);
 - the *snare* on note 28 (D);
 - the *hi-hat* on note 42 (F#).
+
+Therefore, our last dataset consists in  a "pool" of Kick/Snare/Hi-Hats loops.  We generated *by hand*  approximately 30 different original drum loops and then we used the *automatic generation* previously shown to generate approximately other 500 loops. This pool has been created using free samples pack and contains roughly 20 indipendent samples. 
+Both kind of dataset are at *hign resolution*. This means that the network could be potentially trained using higher note resolution (32-th or even 64-th notes). Anyway this choice heavily affects training time. 
+This loops have variable length. The ones made by hand are shorter than the artificial ones. The former are 8 or 16 bar loops, the latter are 40 bar loops.
+The BPM of the artificial loops is fixed to 85. It can be changed in the code. The BPM of the hand made dataset varies between 60 and 90.
 
 ## Data Pre-Processing
 We need to convert our MIDI input data into a appropriate format for our Neural Network. <br> First thing first, we will convert our MIDI file into a *.txt* file. Then we're going to encode all the notes with the following scheme:
