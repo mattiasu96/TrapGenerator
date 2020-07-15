@@ -227,5 +227,14 @@ Our model has learnt the ```BAR``` pattern and also a note pattern!
 We managed to create a model capable of learning drum patterns in trap music. Unfortunately the model is overfitting the data and at the moment there's no way to control the overfitting (besides randomly testing training on different epochs and checking the results by hand).<br> We're using an artificial dataset with a lot of repetitions, our validation set basically will likely contain the same data as the training set. In order to perform a good analysis of the generalization of our model, we would need a decent dataset of real songs. 
 
 **NB**: There's a bug in the export function of the model. For some reason the model weights are not saved correctly into a file. Besides this, the model works perfectly. 
+power
+
+# Further improvements
+- Model a complete drum set (*9 instruments*). We would need a more complete dataset and more computational power.
+- 32-th note resolution. We would need more computational power. With this dataset it is already possible to train the network with a higher resolution. Better results do not naturally follow: it could be necessary to tweak some parameters.
+- A bigger and qualitatively better dataset. We're using an artificial dataset with a lot of repetitions, our validation set basically will likely contain the same data as the training set. In order to perform a good analysis of the generalization of our model, we would need a decent dataset of real songs.
+- A GUI. 
+
+
 
 
