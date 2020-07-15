@@ -32,7 +32,7 @@ We also wrote some code additional which helped us in the dataset built. It perf
 We decided to reduce our dataset to a three-instrument set of loops. This made a lot easier buinding it from scratch. This model would also work with more complete datasets (up to 9 instruments to date). 
 In our dataset we put: 
 - the *kick* on note 36 (C);
-- the *snare* on note 28 (D);
+- the *snare* on note 38 (D);
 - the *hi-hat* on note 42 (F#).
 
 Therefore, our last dataset consists in  a "pool" of Kick/Snare/Hi-Hats loops.  We generated *by hand*  approximately 30 different original drum loops and then we used the *automatic generation* previously shown to generate approximately other 500 loops. This pool has been created using free samples pack and contains roughly 20 indipendent samples. 
