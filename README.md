@@ -241,9 +241,15 @@ We managed to create a model capable of learning drum patterns in trap music. Un
 
 # GUI
 Here is a simple GUI on a remote webserver which allows the user to select BPM and get the generated trap drum pattern:
+
+
 ![Homepage](Resources/image_2020-09-18_14-10-58.png "Title")
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+
+
+![MIDI Generation](Resources/image_2020-09-18_14-11-35.png "Title")
+
+
+![Generation completed](Resources/image_2020-09-18_14-12-17.png "Title")
 
 
 
