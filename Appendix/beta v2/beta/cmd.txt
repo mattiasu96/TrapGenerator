@@ -1,0 +1,6 @@
+cd C:\Users\Emanuele\Documents\Progetto CPAC\Code\Appendice\beta\beta v2\beta
+
+python manage.py process_tasks
+python manage.py runserver
+
+http://127.0.0.1:8000/

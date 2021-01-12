@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lil Bot!</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/midiPlayer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rangeslider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/prism.css' %}" />
+</head>
+<body>
+
+
+<!-- Banner -->
+<section id="banner"> 
+    <div class="inner split">
+        <section>
+            <h2>Hi, I'm Lil Bot!</h2>
+        </section>
+        
+    <section>
+        <!-- Generate MIDI Button -->
+        {% if midiDisplay is False and waitingFlag is False %}
+            <p id="instr1">Click to generate a drum loop</p>
+            <ul class="actions">
+            <input type="button" value="Generate Midi!" onclick="location.href='{% url 'waitaminute' %}'" name="mybtn" class="button1" id="genMidi">
+            </ul>
+        </section>
+        {% elif waitingFlag is True %} 
+        <p id="instr1">Your drum loop is being generated!</p>
+        {% elif midiDisplay is True %}
+        <p id="instr1">Your drum loop has been generated!</p>
+        {% endif %} 
+
+
+
+        </div>
+        </section>   
+
+    <section id="contenitore" >
+        <div>
+
+    {% if waitingFlag is True %}
+        <p>This may take a while...</p>
+        <p>In the meanwhile you can enjoy this relaxed cat</p>
+        <iframe id="gatto" src="https://gifer.com/embed/2Hh" width=480 height=300.000 frameBorder="0" allowFullScreen></iframe>
+    {% elif  waitingFlag is False and midiDisplay is False %}
+    <div class="presentazione"> 
+    <p>This project focuses on the automatic drum generation for trap music. Our goal is to create a model capable of creating drums loop for trap music.</p>
+    <p>The whole project is based on <a href="https://arxiv.org/abs/1604.05358#">this</a> paper</p>
+    </div>
+    {% endif %}
+    <!-- MIDI Player -->
+    {% if midiDisplay is True %}  
+    <div >
+        <div id="cntls" ></div>
+            <!-- <input id="midiFileGen" type="button" value="Midi Generator"> -->
+            <h3 style="font-size: 1.5em;" id="wrng">Midi Player</h3>
+            <ul class="actions"><button onclick="go();" id="playpause" class="button1">Play</button></ul>
+            <p id="tmr">Click to hear the result!</p>
+
+            <div>
+                <input id="position" type="range" min="0" max="100" value="0" step="1" />
+            </div>
+            <p style="height:10px" id="drum"></p>
+        </div>
+    
+        <div style="font-size: 70%;" id="bpmBox"> 
+            <p for="bpmSel">BPM Selector (50-200):
+            <input type="number" id="bpmSel" name="bpmSel" min="50" max="200" value = "120">
+            </p 
+        </div>
+    </div>
+
+    <div style="margin-top: 15px; margin-bottom: 15px">
+        <!-- <a id="download" href="{% static 'midiGen\bellofigo.mid' %}" download> -->
+        <ul class="actions">
+            <a id="download" href="{% static mifi %}" download>
+            <button class="button1" onclick="console.log('Download')" name="mybtn">Download</button>
+            </a>
+        </ul>
+    </div>
+
+    <div>
+        <ul class="actions">
+            <p>Click to generate a new drum loop</p>
+            <button class="button1" type="button" onclick="location.href='{% url 'reGen' %}'" name="mybtn" id="genAnotherMidi">Generate another MIDI!</button>
+        </ul>   
+    </div>
+    {% endif %}
+    <!-- <button id="btnGo">bottone</button> -->
+</div>
+</section>
+<!-- Footer -->
+<footer id="footer">
+    <div class="copyright">
+        &copy; Made with 🤍 by Surricchio Mattia and Intagliata Emanuele. Design: <a href="http://templated.co">TEMPLATED</a>.
+    </div>
+</footer>
+</body>
+
+{% if midiDisplay is True %}
+<script>
+    var midiurl = "{% static mifi %}"
+</script>
+{% endif %}
+<!-- MIDI PLAYER -->
+<script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
+<!-- <script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js\mySamples.js' %}"></script>
+<script src="{% static 'js\MIDIFile.js' %}"></script>
+<script src="{% static 'js\drum.js' %}"></script>
+
+<script src="{% static 'js\gestione.js' %}"></script>
+
+</html>

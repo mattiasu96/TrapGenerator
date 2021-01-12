@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lil Bot</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/midiPlayer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/rangeslider.css' %}">
+</head>
+<body>
+    <div>
+        <h1>Hi, I'm Lil Bot!</h1>
+        <!-- Generate MIDI Button -->
+        {% if midiDisplay is False and waitingFlag is False%}
+            <p id="instr1">Click to generate a drum loop</p>
+            <input type="button" value="Generate Midi!" onclick="location.href='{% url 'waitaminute' %}'" name="mybtn" class="button1" id="genMidi">
+        {% endif %}    
+    </div>  
+    <!-- <div id="test">Test</div> -->
+
+    {% if waitingFlag is True %}
+        <p>Your drum loop is being generated!</p>
+        <p>This may take a while...</p>
+        <p>In the meanwhile you can enjoy this relaxed cat</p>
+        <iframe id="gatto" src="https://gifer.com/embed/2Hh" width=480 height=300.000 frameBorder="0" allowFullScreen></iframe>
+    {% endif %}
+    <!-- MIDI Player -->
+    {% if midiDisplay is True %}
+    <div >
+        <div id="cntls" ></div>
+            <!-- <input id="midiFileGen" type="button" value="Midi Generator"> -->
+            <h2 id="wrng">Midi Player</h2>
+
+            <button onclick="go();" id="playpause" class="button1">Play</button>
+
+            <p id="tmr">Click to hear the result!</p>
+
+            <div>
+                <input id="position" type="range" min="0" max="100" value="0" step="1" />
+            </div>
+            <p id="drum"></p>
+        </div>
+    
+        <div id="bpmBox">
+            <label for="bpmSel">BPM Selector (50-200):</label>
+            <input type="number" id="bpmSel" name="bpmSel" min="50" max="200" value = "120">
+        </div>
+    </div>
+    <div>
+        <!-- <a id="download" href="{% static 'midiGen\bellofigo.mid' %}" download> -->
+        <a id="download" href="{% static mifi %}" download>
+            <button class="button1" onclick="console.log('Download')">Download</button>
+        </a>
+    </div>
+
+    <div>
+        <p>Click to generate a new drum loop</p>
+        <input type="button" value="Generate another MIDI!" onclick="location.href='{% url 'reGen' %}'" class="button1" id="genAnotherMidi">
+    </div>
+    {% endif %}
+    <!-- <button id="btnGo">bottone</button> -->
+    
+    <bottom>
+      Progetto di Gino Jacopo, Brundo Nicoletta e Intagliata Emanuele.
+    </bottom>
+</body>
+
+{% if midiDisplay is True %}
+<script>
+    var midiurl = "{% static mifi %}"
+</script>
+{% endif %}
+<!-- MIDI PLAYER -->
+<script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
+<!-- <script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js\mySamples.js' %}"></script>
+<script src="{% static 'js\MIDIFile.js' %}"></script>
+<script src="{% static 'js\drum.js' %}"></script>
+
+<script src="{% static 'js\gestione.js' %}"></script>
+
+</html>

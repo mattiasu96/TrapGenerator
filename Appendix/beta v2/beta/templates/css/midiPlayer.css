@@ -1,0 +1,49 @@
+#filesinput{
+    color: blue;
+}
+
+#cntls{
+    color: cadetblue;
+}
+
+#tmr{
+    color: purple;
+}
+
+#position{
+    width: 500px;
+    display: block;
+}
+#tmr{
+    font-size: 13px;
+}
+
+#playpause{
+
+}
+
+#drum{
+
+}
+
+#channel{
+
+}
+
+#selins{
+
+}
+#seldrm{
+    
+}
+
+#bpmSel{
+    height: 70%;
+    background-color:white;
+    color: purple;
+    text-align: center;
+}
+
+#bpmBox{
+    display: inline;
+}
