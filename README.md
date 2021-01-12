@@ -2,7 +2,7 @@
 This project focuses on the automatic drum generation for trap music. Our goal is to create a model capable of creating drums loop for trap music.
 <br>The whole project is based on the following paper: https://arxiv.org/pdf/1604.05358v1.pdf
 
-A simple example can be found here: https://soundcloud.com/mattia-page-surricchio/drum-beat-generated-from-neural-network
+A simple example of our results can be found here: https://soundcloud.com/mattia-page-surricchio/drum-beat-generated-from-neural-network
 
 
 ## Project overview
